@@ -16,9 +16,9 @@ class Alarm
 
   attr_reader :is_alarm_on
 
-  def initialize
-    @low_pressure_threshold = 17
-    @high_pressure_threshold = 21
+  def initialize(low,high)
+    @low_pressure_threshold = low
+    @high_pressure_threshold = high
     @sensor = Sensor.new()
     @is_alarm_on = false
   end
