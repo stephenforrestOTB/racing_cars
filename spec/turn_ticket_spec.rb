@@ -15,11 +15,11 @@ RSpec.describe TicketDispenser do
     end
     it "always return a different number" do
 
-      expect(ticket_zero.turn_number).to_not eq(ticket_one.turn_number)
+      expect(ticket_zero.ticket_number).to_not eq(ticket_one.ticket_number)
     end
     it "increments number by 1 each ticket" do
-      ticket_zero_id = ticket_zero.turn_number
-      ticket_one_id = ticket_one.turn_number
+      ticket_zero_id = ticket_zero.ticket_number
+      ticket_one_id = ticket_one.ticket_number
 
       expect(ticket_one_id).to eq(ticket_zero_id + 1)
     end
@@ -27,8 +27,8 @@ RSpec.describe TicketDispenser do
   context "multiple dispensers" do
     let(:second_dispenser) {TicketDispenser.new}
     it "increments number by 1 each ticket regardless of dispenser" do
-      ticket_zero_id = subject.get_turn_ticket.turn_number
-      ticket_one_id = second_dispenser.get_turn_ticket.turn_number
+      ticket_zero_id = subject.get_turn_ticket.ticket_number
+      ticket_one_id = second_dispenser.get_turn_ticket.ticket_number
 
       expect(ticket_one_id).to eq(ticket_zero_id + 1)
     end
