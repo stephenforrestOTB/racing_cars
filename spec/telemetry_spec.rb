@@ -17,18 +17,19 @@ RX Digital Los.............. 0.10\r\n
 BEP Test.................... -5\r\n
 Local Rtrn Count............ 00\r\n
 Remote Rtrn Count........... 00"}
-  let(:client) {instance_double("TelemetryClient",
+  let(:connected_client) {instance_double("TelemetryClient",
      online_status: true,
      disconnect: true,
      connect:  true,
+     send: true,
+     receive: "DIAGNOSTIC_MESSAGE STUB"
      )}
 
   context "with a successful connection to a client" do
     it "should return diagnostic message" do
-      allow(TelemetryClient).to receive(:new) { client }
-      client.stub(:recieve)
+      allow(TelemetryClient).to receive(:new) { connected_client }
       subject.check_transmission
-      expect(subject.diagnostic_info).to eq(diagnostic_message)
+      expect(subject.diagnostic_info).to eq("DIAGNOSTIC_MESSAGE STUB")
     end
   end
 end
