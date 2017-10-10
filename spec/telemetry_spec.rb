@@ -1,6 +1,6 @@
 require 'spec_helper'
 require 'telemetry'
-
+require 'client'
 RSpec.describe TelemetryDiagnostics do
   let(:diagnostic_message) {"
 LAST TX rate................ 100 MBPS\r\n
@@ -17,10 +17,16 @@ RX Digital Los.............. 0.10\r\n
 BEP Test.................... -5\r\n
 Local Rtrn Count............ 00\r\n
 Remote Rtrn Count........... 00"}
+  let(:client) {instance_double("TelemetryClient",
+     online_status: true,
+     disconnect: true,
+     connect:  true,
+     )}
 
   context "with a successful connection to a client" do
     it "should return diagnostic message" do
-      allow(subject.telemetry_client).to receive(:online_status) { true }
+      allow(TelemetryClient).to receive(:new) { client }
+      client.stub(:recieve)
       subject.check_transmission
       expect(subject.diagnostic_info).to eq(diagnostic_message)
     end
