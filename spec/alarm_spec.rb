@@ -2,7 +2,7 @@ require 'spec_helper'
 require 'tire_pressure'
 
 RSpec.describe "Tire pressure alarm" do
-  let(:alarm) {Alarm.new(17,22, Sensor.new)}
+  let(:alarm) {Alarm.new((17..22), Sensor.new)}
 
   context "with safe tire pressure" do
     it "not sound the alarm" do
