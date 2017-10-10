@@ -23,4 +23,18 @@ RSpec.describe "Tire pressure alarm" do
       expect(alarm.is_alarm_on).to be(true)
     end
   end
+  context "when override hit" do
+    it "toggle alarm on" do
+      alarm.override
+      expect(alarm.is_alarm_on).to be(true)
+    end
+    it "toggle alarm off" do
+      alarm.override
+      expect(alarm.is_alarm_on).to be(true)
+
+      alarm.override
+      expect(alarm.is_alarm_on).to be(false)
+    end
+
+  end
 end

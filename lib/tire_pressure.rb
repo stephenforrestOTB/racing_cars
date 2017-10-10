@@ -27,7 +27,7 @@ class Alarm
   end
 
   def check
-    unless (acceptable_range).cover?(psi)
+    unless acceptable_range.cover?(psi)
       @is_alarm_on = true
     end
   end
