@@ -22,6 +22,10 @@ class Alarm
     @is_alarm_on = false
   end
 
+  def override
+    @is_alarm_on = !@is_alarm_on
+  end
+
   def check
     unless (acceptable_range).cover?(psi)
       @is_alarm_on = true
