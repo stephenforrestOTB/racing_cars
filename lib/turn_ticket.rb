@@ -7,13 +7,9 @@ class TurnTicket
 end
 
 class TurnNumberSequence
-
   @@turn_number = -1
-
   def self.next_turn_number
     @@turn_number += 1
-
-    @@turn_number
   end
 end
 
