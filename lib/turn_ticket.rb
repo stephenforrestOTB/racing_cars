@@ -18,14 +18,16 @@ class TurnNumberSequence
 end
 
 class TicketDispenser
-  def initialize(sequence_generator = TurnNumberSequence)
+  attr_reader :sequence_generator, :ticket_type
+  def initialize(sequence_generator = TurnNumberSequence, ticket_type = TurnTicket)
     @sequence_generator = sequence_generator
+    @ticket_type = ticket_type
   end
   def get_turn_ticket
-    TurnTicket.new(next_number)
+    ticket_type.new(next_number)
   end
   private
   def next_number
-    @sequence_generator.next_turn_number
+    sequence_generator.next_turn_number
   end
 end
